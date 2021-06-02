@@ -82,20 +82,19 @@ public class MainActivity extends AppCompatActivity {
                 if(item.getItemId()==R.id.menuRefresh)
                 {
                     progressBar.setVisibility(View.VISIBLE);
-                    try {
+                   try {
                         if(isConnected()) {
                             crewViewModel.deleteALl();
-                            getRemote();
+                            progressBar.setVisibility(View.VISIBLE);
                             noData.setVisibility(View.GONE);
+                            getRemote();
                         }
                         else
-                        {
+                       {
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(activity,"No Internet Available",Toast.LENGTH_SHORT).show();
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
+                       }
+                   } catch (InterruptedException | IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -118,7 +117,10 @@ public class MainActivity extends AppCompatActivity {
         crewViewModel.getCrewList().observe(this, new Observer<List<Crew>>() {
             @Override
             public void onChanged(List<Crew> crews) {
+                if(crews.size()!=0)
                 progressBar.setVisibility(View.GONE);
+                else
+                    progressBar.setVisibility(View.VISIBLE);
                 recyclerView.setAdapter(new CrewAdapter(activity,crews));
 
             }

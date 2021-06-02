@@ -25,8 +25,6 @@ public class CrewAdapter extends RecyclerView.Adapter< CrewAdapter.CrewViewHolde
     private List<Crew> crewList;
     private Activity activity;
 
-    public CrewAdapter() {
-    }
 
     public CrewAdapter(Activity activity,List<Crew> crew) {
         this.activity=activity;
