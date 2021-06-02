@@ -108,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //getRemote();
         if(state == 0)
         {
             getRemote();
